@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>దసరా నవరాత్రి ఉత్సవాలు</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Telugu:wght@500;800&family=Noto+Sans+Telugu:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="scene"></canvas>
+
+<div class="music">
+  <button id="play" aria-label="Play music">♪</button>
+  <button id="mute" aria-label="Mute">🔊</button>
+  <input id="vol" type="range" min="0" max="1" step="0.05" value="0.5" aria-label="Volume">
+  <audio id="bgm" loop src="dasarasong.mp3"></audio>
+</div>
+
+<nav>
+  <a href="#hero">ఉత్సవాల వివరాలు</a>
+  <a href="#schedule">షెడ్యూల్</a>
+  <a href="#gallery">దర్శనం</a>
+  <a href="#temple">దేవాలయం</a>
+</nav>
+
+<header id="hero">
+  <div class="rays"></div>
+  <div class="frame">
+    <h1><span class="big">దసరా</span><span>నవరాత్రి ఉత్సవాలు</span></h1>
+    <p class="sub">శ్రీ అమ్మవారి నవరాత్రి ఉత్సవాలు</p>
+    <p class="sub place-line">Sri Kondalamma Thali</p>
+    <p class="sub place-line">JP Nagar Colony, 5th Line</p>
+    <div class="countdown-wrap">
+      <div class="countdown-label">Day 1 starts in</div>
+      <div id="countdown" class="countdown">--</div>
+    </div>
+    <div class="btns">
+      <a class="btn" href="#hero">ఉత్సవాల వివరాలు</a>
+      <a class="btn" href="#gallery">దేవతల దర్శనం</a>
+      <a class="btn" href="#schedule">షెడ్యూల్ చూడండి</a>
+    </div>
+  </div>
+</header>
+
+<section id="schedule">
+  <h2>నవరాత్రి ఉత్సవాల షెడ్యూల్</h2>
+  <div class="grid" id="cards"></div>
+</section>
+
+<section id="gallery">
+  <h2>అమ్మవారి దర్శనం</h2>
+  <div class="gallery" id="gal"></div>
+</section>
+
+<section id="temple">
+  <h2>దేవాలయ దర్శనం</h2>
+  <div class="temple">
+    <div class="bell"><span>🔔</span></div>
+    <svg viewBox="0 0 400 220" aria-hidden="true">
+      <path fill="#2a0806" stroke="#f5c451" stroke-width="2" d="M20 210V150h40V120h30V90h30V60h40V30l20-25 20 25v30h40v30h30v30h30v30h40v60z"/>
+      <path fill="#f5c451" d="M185 210v-45a15 15 0 0130 0v45z"/>
+    </svg>
+    <div class="diyas"><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<footer>
+  <div class="om">ॐ</div>
+  <p>శ్రీ అమ్మవారి ఆశీస్సులు అందరికీ కలగాలని కోరుకుంటూ…</p>
+  <div class="diyas"><i></i><i></i><i></i></div>
+</footer>
+
+<div id="modal"><div class="box"><button id="close" aria-label="Close">✕</button><img id="mimg" alt=""><h3 id="mname"></h3><p id="mdate"></p><p id="mdesc"></p></div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

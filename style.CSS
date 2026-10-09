@@ -1,0 +1,88 @@
+/* ===== Colors ===== */
+:root{--gold:#f5c451;--red:#8e1111;--maroon:#2a0806;--orange:#ff8a1f}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans Telugu',sans-serif;color:#ffe9b8;line-height:1.7;
+  background:radial-gradient(ellipse at top,#6a1010,#2a0806 60%,#140303)}
+#scene{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+section,header,footer,nav{position:relative;z-index:1}
+h1,h2,h3{font-family:'Noto Serif Telugu',serif;color:var(--gold);text-shadow:0 0 18px rgba(255,170,40,.6)}
+
+/* ===== Nav + music ===== */
+nav{display:flex;gap:1.2rem;justify-content:center;padding:1rem;flex-wrap:wrap}
+nav a{color:var(--gold);text-decoration:none;padding:.4rem .8rem}
+.music{position:fixed;right:10px;bottom:10px;z-index:10;display:flex;gap:6px;align-items:center;
+  background:#2a0806cc;border:1px solid var(--gold);border-radius:30px;padding:6px 10px}
+.music button{background:none;border:0;color:var(--gold);font-size:1.2rem;min-width:40px;min-height:40px;cursor:pointer}
+.music input{width:70px}
+
+/* ===== Hero ===== */
+#hero{min-height:80vh;display:grid;place-items:center;text-align:center;padding:2rem 1rem}
+.rays{position:absolute;inset:0;background:conic-gradient(from 0deg at 50% 45%,transparent,#ffb84744,transparent 12%,#ffb84733,transparent 25%,#ffb84744,transparent 40%,transparent);
+  animation:spin 60s linear infinite;mask:radial-gradient(circle,#000,transparent 70%)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.frame{position:relative;padding:2.5rem 2rem;border:4px double var(--gold);border-radius:24px;
+  background:#5a0c0ccc;box-shadow:0 0 50px #ff8a1f66,inset 0 0 40px #0008;max-width:780px}
+h1 span{display:block;font-size:clamp(1.8rem,6vw,3.2rem)}
+h1 .big{font-size:clamp(3.5rem,14vw,7rem);line-height:1.2}
+.sub{margin:1rem 0 1.5rem;font-size:1.2rem}
+.place-line{margin:.2rem 0;color:#fff0bf;font-size:1.05rem;font-weight:700;letter-spacing:.02em}
+.countdown-wrap{margin:0 auto 1.6rem;display:inline-block;padding:.9rem 1.2rem;border:1px solid var(--gold);border-radius:16px;background:rgba(58,6,6,.4);box-shadow:0 0 18px rgba(245,196,81,.18)}
+.countdown-label{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#ffe9b8;opacity:.8}
+.countdown{margin-top:.3rem;font-size:clamp(1.2rem,3vw,2rem);font-weight:800;color:var(--gold);font-family:'Noto Serif Telugu',serif;text-shadow:0 0 20px rgba(255,180,62,.7)}
+.btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{padding:.8rem 1.4rem;min-height:48px;border-radius:40px;text-decoration:none;color:#3a0606;font-weight:600;
+  background:linear-gradient(135deg,#ffe08a,#f29b1d);transition:transform .3s,box-shadow .3s}
+.btn:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 0 25px #ffb347}
+
+/* ===== Sections ===== */
+section{padding:4rem 1rem;max-width:1200px;margin:auto}
+section h2{text-align:center;font-size:clamp(1.6rem,5vw,2.4rem);margin-bottom:2rem}
+
+/* ===== Schedule cards ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.2rem}
+.card{position:relative;overflow:hidden;min-height:170px;padding:1.2rem;border-radius:16px;cursor:pointer;
+  border:1px solid #f5c45188;background:linear-gradient(160deg,#7a1111,#2a0806);transition:box-shadow .4s,transform .4s}
+.card::before{content:"";position:absolute;inset:0;background-image:var(--img);background-size:cover;background-position:center top;
+  opacity:0;transform:scale(1.15);transition:.6s}
+.card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1a0303f2 0%,#1a0303cc 45%,#1a030355 100%)}
+.card:hover::before,.card:focus::before{opacity:.55;transform:scale(1)}
+.card:hover,.card:focus{box-shadow:0 0 30px #ffb347;transform:translateY(-6px);outline:0}
+.card>*{position:relative;z-index:1}
+.card .d{display:inline-block;color:#fff3c4;font-weight:700;font-size:1.05rem;background:#1a0303;border:1px solid var(--gold);border-radius:8px;padding:.1rem .6rem;text-shadow:0 1px 3px #000}
+.card .n{font-family:'Noto Serif Telugu',serif;font-size:1.2rem;margin-top:.5rem;color:#fff;text-shadow:0 2px 6px #000,0 0 12px #000}
+.card .s{font-size:.95rem;color:#ffe08a;font-weight:600;text-shadow:0 2px 6px #000}
+
+/* ===== Gallery ===== */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.2rem;perspective:900px}
+.g{position:relative;border:3px solid var(--gold);border-radius:14px;overflow:hidden;aspect-ratio:3/4;
+  transition:box-shadow .3s;transform-style:preserve-3d}
+.g:hover{box-shadow:0 0 35px #ffb347}
+.g img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.g:hover img{transform:scale(1.1)}
+.g span{position:absolute;bottom:0;left:0;right:0;padding:.6rem;text-align:center;font-weight:600;
+  background:linear-gradient(0deg,#000c,transparent)}
+
+/* ===== Temple, bell, diyas ===== */
+.temple{position:relative;max-width:600px;margin:auto;padding-top:60px}
+.temple svg{width:100%;display:block;filter:drop-shadow(0 0 20px #ff8a1f)}
+.bell{position:absolute;top:0;left:50%;font-size:2.6rem;transform-origin:top center;animation:swing 3s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:translateX(-50%) rotate(14deg)}50%{transform:translateX(-50%) rotate(-14deg)}}
+.diyas{display:flex;justify-content:center;gap:2rem;margin-top:1rem}
+.diyas i{width:30px;height:12px;background:#c7711a;border-radius:0 0 30px 30px;position:relative}
+.diyas i::before{content:"";position:absolute;left:10px;bottom:10px;width:10px;height:22px;border-radius:50% 50% 50% 50%/70% 70% 30% 30%;
+  background:radial-gradient(#fff,#ffb400 50%,#ff5a00);box-shadow:0 0 20px #ffa500;animation:flame .25s infinite alternate}
+@keyframes flame{from{transform:scale(1,.9) rotate(-3deg)}to{transform:scale(.9,1.1) rotate(3deg)}}
+
+/* ===== Footer ===== */
+footer{text-align:center;padding:3rem 1rem 6rem;background:linear-gradient(0deg,#000a,transparent)}
+.om{font-size:4rem;color:var(--gold);text-shadow:0 0 25px #ffa500}
+
+/* ===== Modal ===== */
+#modal{position:fixed;inset:0;z-index:20;display:none;place-items:center;background:#000b;padding:1rem}
+#modal.on{display:grid}
+.box{position:relative;max-width:420px;max-height:92vh;overflow:auto;background:var(--maroon);border:3px double var(--gold);border-radius:18px;padding:1rem;text-align:center}
+.box img{width:100%;max-height:50vh;object-fit:cover;border-radius:12px}
+#close{position:absolute;right:10px;top:10px;width:40px;height:40px;border-radius:50%;border:0;background:var(--gold);cursor:pointer}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
