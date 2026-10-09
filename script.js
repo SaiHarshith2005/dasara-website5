@@ -36,20 +36,43 @@ const updateCountdown = () => {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
+const assetCandidates = (name) => {
+  const normalized = name.replace(/\s+/g, " ").trim();
+  const variants = [
+    normalized,
+    normalized.replace(/ /g, ""),
+    normalized.replace(/ /g, "-"),
+    normalized.toLowerCase(),
+    normalized.toLowerCase().replace(/ /g, ""),
+    normalized.toLowerCase().replace(/ /g, "-"),
+    `assets/images/${normalized}`,
+    `assets/images/${normalized.replace(/ /g, "")}`,
+    `assets/images/${normalized.replace(/ /g, "-")}`
+  ];
+  const unique = [...new Set(variants.filter(Boolean))];
+  return unique;
+};
 const IMG = k => {
   const map = {
-    "bala-tripura-sundari": "ammavaru1.jpg",
-    "gayatri-devi": "ammavaru4.jpg",
-    "annapurna-devi": "ammavaru3.jpg",
-    "maha-chandi": "ammavaru4.jpg",
-    "lalitha-tripura-sundari": "ammavaru5.jpg",
-    "saraswati-devi": "ammavaru6.jpg",
-    "mahalakshmi-devi": "sri mahalakshmi devi.jpg",
-    "durga-devi": "ammavaru8.jpg",
-    "mahishasura-mardini": "ammamvaru9.jpg",
-    "rajarajeshwari": "ammavaru10.jpg"
+    "bala-tripura-sundari": ["ammavaru1.jpg", "assets/images/ammavaru1.jpg"],
+    "gayatri-devi": ["ammavaru4.jpg", "assets/images/ammavaru4.jpg"],
+    "annapurna-devi": ["ammavaru3.jpg", "assets/images/ammavaru3.jpg"],
+    "maha-chandi": ["ammavaru4.jpg", "assets/images/ammavaru4.jpg"],
+    "lalitha-tripura-sundari": ["ammavaru5.jpg", "assets/images/ammavaru5.jpg"],
+    "saraswati-devi": ["ammavaru6.jpg", "assets/images/ammavaru6.jpg"],
+    "mahalakshmi-devi": ["sri mahalakshmi devi.jpg", "assets/images/sri mahalakshmi devi.jpg"],
+    "durga-devi": ["ammavaru8.jpg", "assets/images/ammavaru8.jpg"],
+    "mahishasura-mardini": ["ammamvaru9.jpg", "assets/images/ammamvaru9.jpg"],
+    "rajarajeshwari": ["ammavaru12.jpg", "assets/images/ammavaru12.jpg", "ammavaru 12.jpg", "assets/images/ammavaru 12.jpg"]
   };
-  return map[k] || "assets/images/goddess-generic.svg";
+  const candidates = map[k] ? [...map[k], ...assetCandidates(map[k][0])] : ["assets/images/goddess-generic.svg"];
+  return candidates[0];
+};
+const fallbackImage = (img, nextSrcs) => {
+  const fallback = nextSrcs.find((src) => src && src !== img.src);
+  if (fallback) {
+    img.src = fallback;
+  }
 };
 let boost = 1; // particle speed boost while hovering a card
 
@@ -57,12 +80,17 @@ let boost = 1; // particle speed boost while hovering a card
 DAYS.forEach(([date, wk, name, sub, key, desc]) => {
   const c = document.createElement("div");
   c.className = "card"; c.tabIndex = 0;
-  c.style.setProperty("--img", `url(${IMG(key)})`);
+  const cardImage = IMG(key);
+  c.style.setProperty("--img", `url(${cardImage})`);
   c.innerHTML = `<div class="d">${date} – ${wk}</div><div class="n">${name}</div><div class="s">${sub}</div>`;
   c.onmouseenter = () => boost = 2.5;   // more particles/speed on hover
   c.onmouseleave = () => boost = 1;
   const open = () => {
-    $("#mimg").src = IMG(key); $("#mname").textContent = name + " " + sub;
+    const modalImg = $("#mimg");
+    const candidates = [IMG(key), ...assetCandidates(IMG(key))];
+    modalImg.onerror = () => fallbackImage(modalImg, candidates);
+    modalImg.src = candidates[0];
+    $("#mname").textContent = name + " " + sub;
     $("#mdate").textContent = `${date} – ${wk}`; $("#mdesc").textContent = desc;
     $("#modal").classList.add("on");
     gsap.from(".box", {scale: .85, opacity: 0, duration: .5, ease: "back.out(1.6)"});
@@ -72,7 +100,11 @@ DAYS.forEach(([date, wk, name, sub, key, desc]) => {
 
   const g = document.createElement("div");
   g.className = "g";
-  g.innerHTML = `<img loading="lazy" src="${IMG(key)}" alt="${name}"><span>${name}</span>`;
+  const galleryImage = IMG(key);
+  const imageCandidates = [galleryImage, ...assetCandidates(galleryImage)];
+  g.innerHTML = `<img loading="lazy" src="${imageCandidates[0]}" alt="${name}"><span>${name}</span>`;
+  const imgEl = g.querySelector("img");
+  imgEl.onerror = () => fallbackImage(imgEl, imageCandidates);
   // 3D tilt following the pointer
   g.onmousemove = e => {
     const r = g.getBoundingClientRect();
