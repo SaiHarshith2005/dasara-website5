@@ -42,7 +42,7 @@ section h2{text-align:center;font-size:clamp(1.6rem,5vw,2.4rem);margin-bottom:2r
 /* ===== Schedule cards ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1.2rem}
 .card{position:relative;overflow:hidden;min-height:170px;padding:1.2rem;border-radius:16px;cursor:pointer;
-  border:1px solid #f5c45188;background:linear-gradient(160deg,#7a1111,#2a0806);transition:box-shadow .4s,transform .4s}
+  border:1px solid #f5c45188;background:linear-gradient(160deg,#11507a,#062a14);transition:box-shadow .4s,transform .4s}
 .card::before{content:"";position:absolute;inset:0;background-image:var(--img);background-size:cover;background-position:center top;
   opacity:0;transform:scale(1.15);transition:.6s}
 .card::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1a0303f2 0%,#1a0303cc 45%,#1a030355 100%)}
