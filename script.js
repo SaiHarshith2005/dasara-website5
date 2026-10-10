@@ -54,16 +54,16 @@ const assetCandidates = (name) => {
 };
 const IMG = k => {
   const map = {
-    "bala-tripura-sundari": ["ammavaru1.jpg", "assets/images/ammavaru1.jpg"],
-    "gayatri-devi": ["ammavaru4.jpg", "assets/images/ammavaru4.jpg"],
-    "annapurna-devi": ["ammavaru3.jpg", "assets/images/ammavaru3.jpg"],
-    "maha-chandi": ["ammavaru4.jpg", "assets/images/ammavaru4.jpg"],
-    "lalitha-tripura-sundari": ["ammavaru5.jpg", "assets/images/ammavaru5.jpg"],
-    "saraswati-devi": ["ammavaru6.jpg", "assets/images/ammavaru6.jpg"],
-    "mahalakshmi-devi": ["sri mahalakshmi devi.jpg", "assets/images/sri mahalakshmi devi.jpg"],
-    "durga-devi": ["ammavaru8.jpg", "assets/images/ammavaru8.jpg"],
-    "mahishasura-mardini": ["ammamvaru9.jpg", "assets/images/ammamvaru9.jpg"],
-    "rajarajeshwari": ["ammavaru12.jpg", "assets/images/ammavaru12.jpg", "ammavaru 12.jpg", "assets/images/ammavaru 12.jpg"]
+    "bala-tripura-sundari": ["assets/images/ammavaru1.jpg", "ammavaru1.jpg"],
+    "gayatri-devi": ["assets/images/ammavaru4.jpg", "ammavaru4.jpg"],
+    "annapurna-devi": ["assets/images/ammavaru3.jpg", "ammavaru3.jpg"],
+    "maha-chandi": ["assets/images/ammavaru4.jpg", "ammavaru4.jpg"],
+    "lalitha-tripura-sundari": ["assets/images/ammavaru5.jpg", "ammavaru5.jpg"],
+    "saraswati-devi": ["assets/images/ammavaru6.jpg", "ammavaru6.jpg"],
+    "mahalakshmi-devi": ["assets/images/sri mahalakshmi devi.jpg", "sri mahalakshmi devi.jpg"],
+    "durga-devi": ["assets/images/ammavaru8.jpg", "ammavaru8.jpg"],
+    "mahishasura-mardini": ["assets/images/ammamvaru9.jpg", "ammamvaru9.jpg"],
+    "rajarajeshwari": ["assets/images/ammavaru12.jpg", "ammavaru12.jpg", "assets/images/ammavaru 12.jpg", "ammavaru 12.jpg"]
   };
   const candidates = map[k] ? [...map[k], ...assetCandidates(map[k][0])] : ["assets/images/goddess-generic.svg"];
   return candidates[0];
@@ -213,3 +213,4 @@ $("#play").onclick = () => {
 $("#mute").onclick = () => { bgm.muted = !bgm.muted; $("#mute").textContent = bgm.muted ? "🔇" : "🔊"; };
 $("#vol").oninput = e => bgm.volume = e.target.value;
 bgm.volume = .5;
+
